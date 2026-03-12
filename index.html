@@ -25,6 +25,10 @@
       --radius-md: 18px;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     *::selection {
       background: rgba(255, 170, 210, 0.35);
       color: #fff;
@@ -575,7 +579,13 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 14px 28px rgba(0,0,0,0.22);
-      transition: transform 0.25s ease, filter 0.25s ease;
+      transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .cta-btn:hover { transform: translateY(-2px); filter: brightness(1.04); }
@@ -839,13 +849,13 @@
   </style>
 </head>
 <body>
-  <div class="petals-layer" id="petalsLayer"></div>
+  <div class="petals-layer" id="petalsLayer" aria-hidden="true"></div>
 
-  <div class="overlay" id="welcomeOverlay">
-    <div class="modal">
+  <div class="overlay" id="welcomeOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
       <div class="modal-top">
-        <div class="modal-title">Heloword Tôi Là Hà Văn Huấn</div>
-        <button class="modal-close-top" id="closeTopBtn">×</button>
+        <div class="modal-title" id="welcomeTitle">Heloword Tôi Là Hà Văn Huấn</div>
+        <button class="modal-close-top" id="closeTopBtn" type="button" aria-label="Đóng cửa sổ">×</button>
       </div>
 
       <div class="modal-text">
@@ -868,8 +878,8 @@
       </div>
 
       <div class="modal-bottom">
-        <button class="close-btn close-1h" id="close1HourBtn">Đóng 1 giờ</button>
-        <button class="close-btn close-now" id="closeNowBtn">Đóng</button>
+        <button class="close-btn close-1h" id="close1HourBtn" type="button">Đóng 1 giờ</button>
+        <button class="close-btn close-now" id="closeNowBtn" type="button">Đóng</button>
       </div>
     </div>
   </div>
@@ -881,7 +891,8 @@
           <img
             class="brand-logo"
             src="https://sf-static.upanhlaylink.com/img/image_202603122a4d724feb78745875f510b3aff53201.jpg"
-            alt="Logo PNG"
+            alt="Logo Hà Văn Huấn"
+            loading="eager"
           />
         </div>
         <div class="brand-copy">
@@ -890,7 +901,7 @@
         </div>
       </div>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Mở menu">
+      <button class="menu-btn" id="menuBtn" aria-label="Mở menu" aria-expanded="false" aria-controls="menuPanel" type="button">
         <div class="menu-bars">
           <span></span>
           <span></span>
@@ -900,9 +911,9 @@
     </header>
 
     <div class="menu-panel" id="menuPanel">
-      <a class="menu-item" href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-      <a class="menu-item" href="https://zalo.me/g/example" target="_blank" rel="noopener noreferrer">Nhóm Zalo</a>
-      <a class="menu-item" href="https://example.com/free-1" target="_blank" rel="noopener noreferrer">Tất Cả App</a>
+      <a class="menu-item" href="https://www.facebook.com/share/1B527FwVu7/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a class="menu-item" href="https://zalo.me/g/0qevnrkjbbhnraioxpos" target="_blank" rel="noopener noreferrer">Nhóm Zalo</a>
+      <a class="menu-item" href="#apps">Tất Cả App</a>
     </div>
 
     <section class="intro-box">
@@ -917,7 +928,7 @@
       </div>
     </section>
 
-    <section class="cards">
+    <section class="cards" id="apps">
       <article class="card">
         <div class="card-decor left gourd">
           <div class="gourd-top"></div>
@@ -931,7 +942,7 @@
           <div class="envelope-body"></div>
         </div>
         <div class="card-image-wrap">
-          <img class="card-image" src="https://sf-static.upanhlaylink.com/img/image_2026031278f66ae4599fb20a1e7ffa8b7fdd1ae4.jpg" />
+          <img class="card-image" src="https://sf-static.upanhlaylink.com/img/image_2026031278f66ae4599fb20a1e7ffa8b7fdd1ae4.jpg" alt="Key login aimlock super" loading="lazy" />
         </div>
         <div class="card-body">
           <div class="card-badge">KEY LOGIN AIMLOCK SUPER</div>
@@ -939,10 +950,17 @@
           <div class="card-desc">
             Update<span class="c1">Mỗi Ngày</span>, Sử dụng được cho cả android & Iphone <span class="c2">ấn vào nút bên dưới</span> để Để Lấy key <span class="c3">🚀</span>.
           </div>
-          <button class="cta-btn one redirect-btn" data-link="https://link4m.com/0FQhuhUe">
+          <a
+            class="cta-btn one redirect-btn"
+            href="https://link4m.com/0FQhuhUe"
+            data-link="https://link4m.com/0FQhuhUe"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Get Key Free"
+          >
             <span class="btn-content">Get Key Free</span>
             <span class="btn-loading"><span class="spinner"></span>wait...</span>
-          </button>
+          </a>
         </div>
       </article>
 
@@ -959,7 +977,7 @@
           <div class="gourd-detail">禄</div>
         </div>
         <div class="card-image-wrap">
-          <img class="card-image" src="https://sf-static.upanhlaylink.com/img/image_20260312054cabe60eef3c6b7dae9e43a3c254df.jpg" alt="Ưu đãi 2" />
+          <img class="card-image" src="https://sf-static.upanhlaylink.com/img/image_20260312054cabe60eef3c6b7dae9e43a3c254df.jpg" alt="App boost super" loading="lazy" />
         </div>
         <div class="card-body">
           <div class="card-badge">APP BOOST SUPER</div>
@@ -967,10 +985,17 @@
           <div class="card-desc">
             Sử Dụng Cho Thiết Bị <span class="c1">Android & Iphone</span>, Có nhiều chức năng giúp bạn tăng tốc game , Mượt hơn , và kéo tâm full đỏ một cách dễ dàng nhất <span class="c2">Tải Ngay</span>, <span class="c3">Hãy ấn vào nút bên dưới</span>.
           </div>
-          <button class="cta-btn two redirect-btn" data-link="https://link4m.com/htSsJo">
+          <a
+            class="cta-btn two redirect-btn"
+            href="https://link4m.com/htSsJo"
+            data-link="https://link4m.com/htSsJo"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Tải Ứng Dụng"
+          >
             <span class="btn-content">Tải Ứng Dụng</span>
             <span class="btn-loading"><span class="spinner"></span>Wait...</span>
-          </button>
+          </a>
         </div>
       </article>
 
@@ -987,7 +1012,7 @@
           <div class="envelope-body"></div>
         </div>
         <div class="card-image-wrap">
-          <img class="card-image" src="https://sf-static.upanhlaylink.com/img/image_2026031285943fc95823af13f6835a59c3dae68d.jpg" alt="Ưu đãi 3" />
+          <img class="card-image" src="https://sf-static.upanhlaylink.com/img/image_2026031285943fc95823af13f6835a59c3dae68d.jpg" alt="App aimlock super" loading="lazy" />
         </div>
         <div class="card-body">
           <div class="card-badge">App Aimlock Super</div>
@@ -995,10 +1020,17 @@
           <div class="card-desc">
             Cài được Trên Tất cả thiết bị <span class="c1">An toàn tuyệt đối</span>, Đã Update<span class="c2">Giúp Cheat Game Kéo Tâm Full đỏ đơn giản </span> Hãy tải xuống bằng cách<span class="c3">Ấn Vào Nút Bên Dưới </span>.
           </div>
-          <button class="cta-btn three redirect-btn" data-link="https://link4m.com/sX2vw5">
+          <a
+            class="cta-btn three redirect-btn"
+            href="https://link4m.com/sX2vw5"
+            data-link="https://link4m.com/sX2vw5"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Tải Ứng Dụng"
+          >
             <span class="btn-content">Tải Ứng Dụng </span>
             <span class="btn-loading"><span class="spinner"></span>Wait...</span>
-          </button>
+          </a>
         </div>
       </article>
     </section>
@@ -1014,29 +1046,47 @@
     const redirectButtons = document.querySelectorAll('.redirect-btn');
     const petalsLayer = document.getElementById('petalsLayer');
 
+    function toggleMenu(forceState) {
+      const shouldShow = typeof forceState === 'boolean'
+        ? forceState
+        : !menuPanel.classList.contains('show');
+
+      menuPanel.classList.toggle('show', shouldShow);
+      menuBtn.setAttribute('aria-expanded', String(shouldShow));
+    }
+
     menuBtn.addEventListener('click', function () {
-      menuPanel.classList.toggle('show');
+      toggleMenu();
     });
 
     document.addEventListener('click', function (e) {
       const insideMenu = menuPanel.contains(e.target);
       const insideBtn = menuBtn.contains(e.target);
+
       if (!insideMenu && !insideBtn) {
-        menuPanel.classList.remove('show');
+        toggleMenu(false);
       }
     });
 
     function closeModal() {
       overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    function openModal() {
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden', 'false');
     }
 
     function showModalIfAllowed() {
       const hiddenUntil = Number(localStorage.getItem('hideModalUntil') || '0');
+
       if (Date.now() < hiddenUntil) {
-        overlay.classList.remove('show');
+        closeModal();
         return;
       }
-      overlay.classList.add('show');
+
+      openModal();
     }
 
     closeTopBtn.addEventListener('click', closeModal);
@@ -1048,19 +1098,61 @@
       closeModal();
     });
 
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        toggleMenu(false);
+      }
+    });
+
+    function safeRedirect(link, triggerElement) {
+      if (!link) return;
+
+      triggerElement.classList.add('loading');
+
+      let newTab = null;
+
+      try {
+        newTab = window.open('about:blank', '_blank', 'noopener,noreferrer');
+        if (newTab) {
+          newTab.opener = null;
+        }
+      } catch (error) {
+        newTab = null;
+      }
+
+      setTimeout(function () {
+        if (newTab && !newTab.closed) {
+          newTab.location.href = link;
+          triggerElement.classList.remove('loading');
+          return;
+        }
+
+        window.location.href = link;
+      }, 1400);
+    }
+
     redirectButtons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        const targetLink = button.getAttribute('data-link');
-        button.classList.add('loading');
-        setTimeout(function () {
-          window.open(targetLink, '_blank');
-          button.classList.remove('loading');
-        }, 1400);
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (button.classList.contains('loading')) return;
+
+        const targetLink = button.getAttribute('data-link') || button.getAttribute('href');
+        safeRedirect(targetLink, button);
       });
     });
 
     function createPetals() {
       const petalCount = 24;
+      const fragment = document.createDocumentFragment();
+
       for (let i = 0; i < petalCount; i++) {
         const petal = document.createElement('span');
         petal.className = 'petal';
@@ -1068,9 +1160,11 @@
         petal.style.animationDuration = 8 + Math.random() * 8 + 's';
         petal.style.animationDelay = Math.random() * -16 + 's';
         petal.style.opacity = 0.5 + Math.random() * 0.45;
-        petal.style.transform = `scale(${0.7 + Math.random() * 0.8})`;
-        petalsLayer.appendChild(petal);
+        petal.style.transform = 'scale(' + (0.7 + Math.random() * 0.8) + ')';
+        fragment.appendChild(petal);
       }
+
+      petalsLayer.appendChild(fragment);
     }
 
     createPetals();
